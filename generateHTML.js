@@ -1,34 +1,37 @@
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
+class generateHTML {
+  constructor(){}
+    generateHTML(res, color) {
 
-function generateHTML(data) {
+      const colors = {
+        green: {
+          wrapperBackground: "#E6E1C3",
+          headerBackground: "#C1C72C",
+          headerColor: "black",
+          photoBorderColor: "#black"
+        },
+        blue: {
+          wrapperBackground: "#5F64D3",
+          headerBackground: "#26175A",
+          headerColor: "white",
+          photoBorderColor: "#73448C"
+        },
+        pink: {
+          wrapperBackground: "#879CDF",
+          headerBackground: "#FF8374",
+          headerColor: "white",
+          photoBorderColor: "#FEE24C"
+        },
+        red: {
+          wrapperBackground: "#DE9967",
+          headerBackground: "#870603",
+          headerColor: "white",
+          photoBorderColor: "white"
+        }
+      }
+    
   return `<!DOCTYPE html>
-<html lang="en">
-   <head>
+  <html lang="en">
+    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -52,7 +55,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: ${colors[color].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -94,8 +97,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: ${colors[color].headerBackground};
+         color: ${colors[color].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +109,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid ${colors[color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -149,8 +152,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[color].headerBackground};
+           color: ${colors[color].headerColor};
            margin: 20px;
          }
          
@@ -170,5 +173,57 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+    </head>
+    <body>
+      <div class="wrapper">
+        <div class="photo-header">
+          <div class="photo-header img" src="${res.data.avatar_url}"></div>
+          <h1>Hi!</h1>
+          <h2>My name is ${res.data.name}!</h2>
+            <div class="links-nav">
+              <div class="nav-link">
+                <a class="fa-location-arrow">${res.data.location}</a>
+              </div>
+              <div class="nav-link">
+                <a class="social-button github" href="${res.data.html_url}"></a>
+              </div>
+              <div class="nav-link">
+                <a class="fa-blog" href="${res.data.blog}"></a>
+              </div>
+            </div>
+          </div>
+          <main>
+            <div id="container">
+              <h4>${res.data.bio}</h4>
+              <div id="row">
+                <div id="col">
+                  <div id="card">
+                    <h3>Public Repositories</h3>
+                    <h5>${res.data.public_repos}</h5>
+                  </div>
+                </div>
+                <div id="col">
+                  <div id="card">
+                    <h3>Followers</h3>
+                    <h5>${res.data.followers}</h5>
+                  </div>
+                </div>  
+                <div id="col">
+                  <div id="card">
+                    <h3>Following</h3>
+                    <h5>${res.data.following}</h5>
+                  </div>
+                </div>    
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </body>
+  </html> `
+  }
+}
+module.exports = generateHTML;
+
+
