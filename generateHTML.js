@@ -71,6 +71,7 @@ class generateHTML {
          h1, h2, h3, h4, h5, h6 {
          font-family: 'BioRhyme', serif;
          margin: 0;
+         text-align: center;
          }
          h1 {
          font-size: 3em;
@@ -103,7 +104,7 @@ class generateHTML {
          width: 95%;
          border-radius: 6px;
          }
-         .photo-header img {
+         .photo-header-img {
          width: 250px;
          height: 250px;
          border-radius: 50%;
@@ -111,6 +112,7 @@ class generateHTML {
          margin-top: -75px;
          border: 6px solid ${colors[color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
+         justify-content: center;
          }
          .photo-header h1, .photo-header h2 {
          width: 100%;
@@ -178,43 +180,45 @@ class generateHTML {
     <body>
       <div class="wrapper">
         <div class="photo-header">
-          <div class="photo-header img" src="${res.data.avatar_url}"></div>
+          <div class="photo-header-img" src="${res.data.avatar_url}"></div>
           <h1>Hi!</h1>
           <h2>My name is ${res.data.name}!</h2>
             <div class="links-nav">
               <div class="nav-link">
-                <a class="fa-location-arrow">${res.data.location}</a>
+                <a class="fas fa-location-arrow"> ${res.data.location}</a>
               </div>
               <div class="nav-link">
-                <a class="social-button github" href="${res.data.html_url}"></a>
+                <a class="fab fa-github-alt" href="${res.data.html_url}"> GitHub</a>
               </div>
               <div class="nav-link">
-                <a class="fa-blog" href="${res.data.blog}"></a>
+                <a class="fas fa-rss" href="${res.data.blog}"> Blog</a>
               </div>
             </div>
           </div>
           <main>
-            <div id="container">
-              <h4>${res.data.bio}</h4>
-              <div id="row">
-                <div id="col">
-                  <div id="card">
-                    <h3>Public Repositories</h3>
+            <div class="container">
+              <h3>${res.data.bio}</h3>
+              <div class="row">
+                <div class="col">
+                  <div class="card">
+                    <h4>Public Repositories</h4>
                     <h5>${res.data.public_repos}</h5>
                   </div>
                 </div>
-                <div id="col">
-                  <div id="card">
-                    <h3>Followers</h3>
+                <div class="col">
+                  <div class="card">
+                    <h4>Followers</h4>
                     <h5>${res.data.followers}</h5>
                   </div>
-                </div>  
-                <div id="col">
-                  <div id="card">
-                    <h3>Following</h3>
+                </div> 
+              </div>
+              <div class="row"> 
+                <div class="col">
+                  <div class="card">
+                    <h4>Following</h4>
                     <h5>${res.data.following}</h5>
                   </div>
-                </div>    
+                </div>   
               </div>
             </div>
           </main>

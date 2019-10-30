@@ -26,7 +26,6 @@ inquirer.prompt([
   },
 ]).then(function({username, color}) {
   const queryUrl = `https://api.github.com/users/${username}`;
-  console.log(queryUrl);
   
   axios.get(queryUrl).then(function(res) {
     generatePDF(res, color);
